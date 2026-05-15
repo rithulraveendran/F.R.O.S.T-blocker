@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Extreme Productivity Blocker",
   "version": "1.0",
-  "description": "Hard-blocks distractions until June 7, 2026.",
+  "description": "Hard-blocks distractions.",
   "permissions": [
     "tabs",
     "storage",
