@@ -1,5 +1,5 @@
 export const UNLOCK_DATE = new Date('2026-06-07T00:00:00'); // CHANGE THIS DATE AS NEEDED
-export const REDIRECT_TARGET = 'https://i.pinimg.com/736x/54/29/db/5429dbda352161dc28613f5061135dce.jpg';
+export const REDIRECT_TARGET = 'paste your redirect link here'; //Paste the URL you need to redirect to
 
 export const BLOCKED_DOMAINS = [
     'facebook.com',
