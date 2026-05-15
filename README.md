@@ -31,7 +31,7 @@ The extension operates based on a constant `UNLOCK_DATE`.
 
 ### 🚫 Distraction Blacklist
 Immediate redirection for high-dopamine social platforms:
-- `Facebook` • `Instagram` • `Twitter/X` • `TikTok` • `Snapchat` • `FlixBaba`
+- `Facebook` • `Instagram` • `Twitter/X` • `TikTok` • `Snapchat`
 
 ### ⏳ The 15-Minute Daily Grace
 Includes a shared daily timer across all "Tracked" sites. You get **15 minutes total** of combined usage per day. Once the timer hits zero, the redirect target is enforced until the next calendar day.
