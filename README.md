@@ -30,8 +30,8 @@ The extension operates based on a constant `UNLOCK_DATE`.
 - **Educational Creator Whitelist:** Integrated support for high-signal channels like *Veritasium, 3Blue1Brown, Kurzgesagt,* and *Mark Rober*.
 
 ### 🚫 Distraction Blacklist
-Immediate redirection for high-dopamine social platforms:
-- `Facebook` • `Instagram` • `Twitter/X` • `TikTok` • `Snapchat`
+Immediate redirection for high-dopamine social and entertainment platforms:
+- `Facebook` • `Instagram` • `Twitter/X` • `TikTok` • `Snapchat` • `YouTube Music` • `Spotify` • `LinkedIn` • `Pinterest` • `Reddit` • `Quora` • `GitHub`
 
 ### ⏳ The 15-Minute Daily Grace
 Includes a shared daily timer across all "Tracked" sites. You get **15 minutes total** of combined usage per day. Once the timer hits zero, the redirect target is enforced until the next calendar day.
@@ -67,6 +67,14 @@ export const UNLOCK_DATE = new Date('2026-06-07T00:00:00');
 Once you load this extension, the **Anti-Tamper Protocol** will prevent you from accessing the Extensions management page. You will not be able to turn it off, delete it, or change the settings through Chrome until the `UNLOCK_DATE` is reached. 
 
 **Load it only when you are ready for absolute focus.**
+
+## 🛠️ Customization
+1.  **Set Unlock Date:** Open `constants.js` and update the `UNLOCK_DATE` constant.
+2.  **Set Redirect Target:** Open `constants.js` and paste your desired image or website link into the `REDIRECT_TARGET` constant:
+    ```javascript
+    export const REDIRECT_TARGET = 'https://your-link-here.com';
+    ```
+3.  **Manage Keywords:** Add or remove keywords from the `EDUCATIONAL_KEYWORDS` array to fit your study needs.
 
 ---
 
