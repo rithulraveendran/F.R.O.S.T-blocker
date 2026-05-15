@@ -22,23 +22,27 @@ chrome.webNavigation.onBeforeNavigate.addListener((details) => blockExtensions(d
 chrome.webNavigation.onCommitted.addListener((details) => blockExtensions(details));
 
 // Main blocking logic
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     if (!isBlockingActive()) return;
     if (!tab.url) return;
 
     const url = tab.url.toLowerCase();
 
-    // Block Social Media
-    const isSocialBlocked = BLOCKED_DOMAINS.some(domain => url.includes(domain));
-    if (isSocialBlocked) {
+    // Block YouTube Shorts (Always Immediate)
+    if (url.includes('youtube.com/shorts/')) {
         chrome.tabs.update(tabId, { url: REDIRECT_TARGET });
         return;
     }
 
-    // Block YouTube Shorts
-    if (url.includes('youtube.com/shorts/')) {
-        chrome.tabs.update(tabId, { url: REDIRECT_TARGET });
-        return;
+    // Check Blocked Domains (Only redirect if 15-min timer is up)
+    const isTracked = BLOCKED_DOMAINS.some(domain => url.includes(domain));
+    if (isTracked) {
+        const today = new Date().toISOString().split('T')[0];
+        const data = await chrome.storage.local.get(['last_reset_date', 'today_usage']);
+        
+        if (data.last_reset_date === today && (data.today_usage || 0) >= TIMER_LIMIT_MS) {
+            chrome.tabs.update(tabId, { url: REDIRECT_TARGET });
+        }
     }
 });
 
@@ -54,7 +58,8 @@ async function updateTimer(incrementMs) {
 
     const url = activeTab.url.toLowerCase();
     
-    const isTracked = BLOCKED_DOMAINS.some(domain => url.includes(domain)) || url.includes('youtube.com');
+    // Check if the current site is one we want to track (only the Blocked Domains)
+    const isTracked = BLOCKED_DOMAINS.some(domain => url.includes(domain));
 
     if (isTracked) {
         const today = new Date().toISOString().split('T')[0];
