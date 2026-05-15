@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Extreme Productivity Blocker",
+  "version": "1.0",
+  "description": "Hard-blocks distractions until June 7, 2026.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "webNavigation",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
